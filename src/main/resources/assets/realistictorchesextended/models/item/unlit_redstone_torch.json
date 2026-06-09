@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "realistictorchesextended:item/redstone_torch_unlit"
+  }
+}

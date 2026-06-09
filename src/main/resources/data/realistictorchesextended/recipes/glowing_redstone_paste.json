@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:glowstone_dust"
+    },
+    {
+      "item": "minecraft:clay_ball"
+    },
+    {
+      "item": "minecraft:lava_bucket"
+    }
+  ],
+  "result": {
+    "item": "realistictorchesextended:glowing_redstone_paste"
+  }
+}

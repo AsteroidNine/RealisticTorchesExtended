@@ -8,7 +8,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "realistictorchesplus:unlit_redstone_torch",
+              "name": "realistictorchesextended:unlit_redstone_torch",
               "conditions": [
                 {
                   "condition": "realistictorches:drop_unlit"

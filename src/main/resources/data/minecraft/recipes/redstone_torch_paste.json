@@ -3,10 +3,10 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "realistictorchesplus:lit_redstone_torch"
+      "item": "realistictorchesextended:lit_redstone_torch"
     },
     {
-      "item": "realistictorchesplus:glowing_redstone_paste"
+      "item": "realistictorchesextended:glowing_redstone_paste"
     }
   ],
   "result": {

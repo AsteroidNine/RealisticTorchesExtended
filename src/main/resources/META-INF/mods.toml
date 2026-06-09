@@ -30,7 +30,7 @@ displayName="${mod_name}" #mandatory
 displayURL="${display_url}"
 # A file name (in the root of the mod JAR) containing a logo for display
 #logoFile="examplemod.png" #optional
-logoFile="realistic_torches_plus.png"
+logoFile="realistic_torches_extended.png"
 # A text field displayed in the mod UI
 #credits="" #optional
 credits="${credits}"
