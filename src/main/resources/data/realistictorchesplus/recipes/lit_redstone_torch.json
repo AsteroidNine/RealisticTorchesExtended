@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "realistictorchesplus:unlit_redstone_torch"
+    },
+    {
+      "item": "realistictorches:matchbox"
+    }
+  ],
+  "result": {
+    "item": "realistictorchesplus:lit_redstone_torch"
+  }
+}

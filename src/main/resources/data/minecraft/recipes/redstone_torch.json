@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "R",
+    "S"
+  ],
+  "key": {
+    "R":
+    {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "minecraft:redstone_torch"
+  },
+  "conditions": [
+    {
+      "type": "forge:false"
+    }
+  ]
+}

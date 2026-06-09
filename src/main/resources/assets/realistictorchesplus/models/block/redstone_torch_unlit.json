@@ -1,0 +1,7 @@
+{
+  "parent": "block/torch",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "torch": "minecraft:block/redstone_torch_off"
+  }
+}

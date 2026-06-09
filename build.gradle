@@ -140,7 +140,6 @@ dependencies {
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
     implementation fg.deobf("curse.maven:realistic-torches-235729:4647752")
-    runtimeOnly fg.deobf("curse.maven:jei-238222:7391695")
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
@@ -162,7 +161,8 @@ tasks.named('processResources', ProcessResources).configure {
             forge_version: forge_version, forge_version_range: forge_version_range,
             loader_version_range: loader_version_range,
             mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
-            mod_authors: mod_authors, mod_description: mod_description,
+            mod_authors: mod_authors, credits: credits, mod_description: mod_description,
+            display_url: display_url
     ]
     inputs.properties replaceProperties
 

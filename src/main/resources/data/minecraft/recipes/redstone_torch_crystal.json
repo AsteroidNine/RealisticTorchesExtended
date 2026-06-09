@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "G",
+    "S"
+  ],
+  "key": {
+    "G": {
+      "item": "realistictorchesplus:glowing_redstone_crystal"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "minecraft:redstone_torch"
+  }
+}

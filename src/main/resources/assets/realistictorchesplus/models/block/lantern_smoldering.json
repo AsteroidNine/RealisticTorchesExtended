@@ -1,0 +1,7 @@
+{
+  "parent": "block/lantern",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "lantern": "realistictorchesplus:block/lantern_smoldering"
+  }
+}

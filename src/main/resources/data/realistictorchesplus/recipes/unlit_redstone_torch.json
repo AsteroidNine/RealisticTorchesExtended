@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "C",
+    "S"
+  ],
+  "key": {
+    "C": {
+        "item": "minecraft:redstone"
+      },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "realistictorchesplus:unlit_redstone_torch"
+  }
+}
