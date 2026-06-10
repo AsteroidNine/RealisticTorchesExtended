@@ -1,5 +1,5 @@
-# Realistic Torches+
-Realistic Torches+ is a companion for the Realistic Torches Minecraft mod that adds it's functionality to other similar blocks.
+# Realistic Torches Extended
+Realistic Torches Extended is a companion for the Realistic Torches Minecraft mod that adds it's functionality to other similar blocks.
 
 ## Download
 Downloads, installation instructions, and more information can be found on [Curseforge](https://www.curseforge.com/minecraft/mc-mods/realistic-torches-extended).
