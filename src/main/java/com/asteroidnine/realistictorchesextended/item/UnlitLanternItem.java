@@ -1,13 +1,13 @@
 package com.asteroidnine.realistictorchesextended.item;
 
-import com.asteroidnine.realistictorchesextended.block.ModBlocks;
-
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.registries.RegistryObject;
 
 public class UnlitLanternItem extends BlockItem {
 
-    public UnlitLanternItem(Properties properties) {
-        super(ModBlocks.REALISTIC_LANTERN.get(), properties);
+    public UnlitLanternItem(RegistryObject<Block> block, Properties properties) {
+        super(block.get(), properties);
     }
 
 }

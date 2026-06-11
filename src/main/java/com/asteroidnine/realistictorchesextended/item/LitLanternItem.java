@@ -1,21 +1,19 @@
 package com.asteroidnine.realistictorchesextended.item;
 
-import com.asteroidnine.realistictorchesextended.block.ModBlocks;
 import com.asteroidnine.realistictorchesextended.block.RealisticLanternBlock;
-import com.asteroidnine.realistictorchesextended.block.RealisticRedstoneTorchBlock;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.registries.RegistryObject;
 
 public class LitLanternItem extends BlockItem {
 
-    public LitLanternItem(Properties properties) {
-        super(ModBlocks.REALISTIC_LANTERN.get(), properties);
+    public LitLanternItem(RegistryObject<Block> block, Properties properties) {
+        super(block.get(), properties);
     }
 
     @Override
