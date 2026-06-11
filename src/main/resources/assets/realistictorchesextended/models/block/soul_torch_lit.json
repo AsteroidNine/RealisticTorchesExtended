@@ -2,6 +2,6 @@
   "parent": "block/torch",
   "render_type": "minecraft:cutout",
   "textures": {
-    "torch": "realistictorchesextended:item/redstone_torch_lit"
+    "torch": "realistictorchesextended:item/soul_torch_lit"
   }
 }

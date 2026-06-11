@@ -1,5 +1,5 @@
 {
-  "parent": "block/lantern",
+  "parent": "block/lantern_hanging",
   "render_type": "minecraft:cutout",
   "textures": {
     "lantern": "realistictorchesextended:block/lantern_lit"

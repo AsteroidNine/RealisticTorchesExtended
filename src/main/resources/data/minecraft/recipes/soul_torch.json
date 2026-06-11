@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C",
+    "S",
+    "R"
+  ],
+  "key": {
+    "C": [
+      {
+        "item": "minecraft:coal"
+      },
+      {
+        "item": "minecraft:charcoal"
+      }
+    ],
+    "S": {
+      "tag": "forge:rods/wooden"
+    },
+    "R":
+    {
+      "item": "minecraft:soul_sand"
+    }
+  },
+  "result": {
+    "item": "minecraft:soul_torch"
+  },
+  "conditions": [
+    {
+      "type": "forge:false"
+    }
+  ]
+}

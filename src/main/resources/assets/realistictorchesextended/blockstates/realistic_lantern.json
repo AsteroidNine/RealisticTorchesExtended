@@ -4,8 +4,8 @@
     "hanging=false,litstate=1": { "model": "realistictorchesextended:block/lantern_smoldering"},
     "hanging=false,litstate=0": { "model": "realistictorchesextended:block/lantern_unlit"},
 
-    "hanging=true,litstate=2": { "model": "realistictorchesextended:block/lantern_lit" },
-    "hanging=true,litstate=1": { "model": "realistictorchesextended:block/lantern_smoldering"},
-    "hanging=true,litstate=0": { "model": "realistictorchesextended:block/lantern_unlit"}
+    "hanging=true,litstate=2": { "model": "realistictorchesextended:block/lantern_lit_hanging" },
+    "hanging=true,litstate=1": { "model": "realistictorchesextended:block/lantern_smoldering_hanging"},
+    "hanging=true,litstate=0": { "model": "realistictorchesextended:block/lantern_unlit_hanging"}
   }
 }

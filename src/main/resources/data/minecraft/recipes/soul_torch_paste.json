@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "realistictorchesextended:lit_soul_torch"
+    },
+    {
+      "item": "realistictorchesextended:glowing_soul_paste"
+    }
+  ],
+  "result": {
+    "item": "minecraft:soul_torch"
+  }
+}

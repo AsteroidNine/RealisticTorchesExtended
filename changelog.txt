@@ -1,4 +1,16 @@
 ---------------------------------------------
+ VERSION 1.0.0 - 1.20.1
+---------------------------------------------
+- Added full redstone functionality to Realistic Redstone Torch
+- Added Soul Variants (Soul Torch, Soul Lantern, Glowing Soul Crystal, Glowing Soul Paste)
+- Fixed an issue where all Realistic Torch Variants were giving off normal torch particles
+- Added new textures for existing items:
+    - Glowing Redstone Crystal
+    - Glowing Redstone Paste
+    - Smoldering Redstone Torch
+- Slightly improved performance
+
+---------------------------------------------
  VERSION 0.5.0 - 1.20.1
 ---------------------------------------------
 - Initial Release

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "G",
+    "S",
+    "R"
+  ],
+  "key": {
+    "G": {
+      "item": "realistictorchesextended:glowing_soul_crystal"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    },
+    "R": {
+      "item": "minecraft:soul_sand"
+    }
+
+  },
+  "result": {
+    "item": "minecraft:soul_torch",
+    "count": 4
+  }
+}

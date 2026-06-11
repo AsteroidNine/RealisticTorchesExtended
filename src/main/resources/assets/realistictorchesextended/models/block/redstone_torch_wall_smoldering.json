@@ -2,6 +2,6 @@
   "parent": "block/template_torch_wall",
   "render_type": "minecraft:cutout",
   "textures": {
-    "torch": "realistictorches:block/torch_smoldering"
+    "torch": "realistictorchesextended:item/redstone_torch_smoldering"
   }
 }

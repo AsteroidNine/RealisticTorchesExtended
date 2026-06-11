@@ -17,6 +17,10 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> REALISTIC_REDSTONE_TORCH = registerBlock("realistic_redstone_torch", RealisticRedstoneTorchBlock::new, false);
     public static final RegistryObject<Block> REALISTIC_REDSTONE_TORCH_WALL = registerBlock("realistic_redstone_torch_wall", RealisticRedstoneWallTorchBlock::new, false);
+
+    public static final RegistryObject<Block> REALISTIC_SOUL_TORCH = registerBlock("realistic_soul_torch", RealisticSoulTorchBlock::new, false);
+    public static final RegistryObject<Block> REALISTIC_SOUL_TORCH_WALL = registerBlock("realistic_soul_torch_wall", RealisticSoulWallTorchBlock::new, false);
+
     public static final RegistryObject<Block> REALISTIC_LANTERN = registerBlock("realistic_lantern", RealisticLanternBlock::new, false);
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block, boolean needsItem) {

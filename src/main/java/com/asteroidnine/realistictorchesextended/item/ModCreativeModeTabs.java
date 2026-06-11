@@ -1,6 +1,7 @@
 package com.asteroidnine.realistictorchesextended.item;
 
 import com.asteroidnine.realistictorchesextended.RealisticTorchesExtended;
+import com.asteroidnine.realistictorchesextended.block.ModBlocks;
 import com.chaosthedude.realistictorches.registry.RealisticTorchesRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -30,6 +31,11 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.LIT_REDSTONE_TORCH.get());
                         pOutput.accept(ModItems.GLOWING_REDSTONE_CRYSTAL.get());
                         pOutput.accept(ModItems.GLOWING_REDSTONE_PASTE.get());
+
+                        pOutput.accept(ModItems.UNLIT_SOUL_TORCH.get());
+                        pOutput.accept(ModItems.LIT_SOUL_TORCH.get());
+                        pOutput.accept(ModItems.GLOWING_SOUL_CRYSTAL.get());
+                        pOutput.accept(ModItems.GLOWING_SOUL_PASTE.get());
 
                         pOutput.accept(ModItems.UNLIT_LANTERN.get());
                         pOutput.accept(ModItems.LIT_LANTERN.get());

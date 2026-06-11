@@ -15,10 +15,19 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> GLOWING_REDSTONE_PASTE = ITEMS.register("glowing_redstone_paste",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> GLOWING_SOUL_CRYSTAL = ITEMS.register("glowing_soul_crystal",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> GLOWING_SOUL_PASTE = ITEMS.register("glowing_soul_paste",
+            () -> new Item(new Item.Properties()));
+
     public static final RegistryObject<Item> LIT_REDSTONE_TORCH = ITEMS.register("lit_redstone_torch",
             () -> new LitRedstoneTorchItem(new Item.Properties(), Direction.DOWN));
     public static final RegistryObject<Item> UNLIT_REDSTONE_TORCH = ITEMS.register("unlit_redstone_torch",
             () -> new UnlitRedstoneTorchItem(new Item.Properties(), Direction.DOWN));
+    public static final RegistryObject<Item> LIT_SOUL_TORCH = ITEMS.register("lit_soul_torch",
+            () -> new LitSoulTorchItem(new Item.Properties(), Direction.DOWN));
+    public static final RegistryObject<Item> UNLIT_SOUL_TORCH = ITEMS.register("unlit_soul_torch",
+            () -> new UnlitSoulTorchItem(new Item.Properties(), Direction.DOWN));
     public static final RegistryObject<Item> LIT_LANTERN = ITEMS.register("lit_lantern",
             () -> new LitLanternItem(new Item.Properties()));
     public static final RegistryObject<Item> UNLIT_LANTERN = ITEMS.register("unlit_lantern",
