@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "realistictorchesextended:realistic_lantern"
+    "realistictorchesextended:realistic_lantern",
+    "realistictorchesextended:realistic_soul_lantern"
   ]
 }
