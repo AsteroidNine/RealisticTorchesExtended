@@ -8,14 +8,14 @@
   "key": {
     "S":
     {
-      "item": "forge:rods/wooden"
+      "tag": "forge:rods/wooden"
     },
     "C": [
       {
-        "tag": "minecraft:coal"
+        "item": "minecraft:coal"
       },
       {
-        "tag": "minecraft:charcoal"
+        "item": "minecraft:charcoal"
       }
     ],
     "L": {

@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " S ",
+    "SCS",
+    "LLL"
+  ],
+  "key": {
+    "S":
+    {
+      "tag": "forge:rods/wooden"
+    },
+    "C": [
+      {
+        "item": "minecraft:soul_sand"
+      },
+      {
+        "item": "minecraft:soul_soil"
+      }
+    ],
+    "L": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "result": {
+    "item": "minecraft:soul_campfire"
+  },
+  "conditions": [
+    {
+      "type": "forge:false"
+    }
+  ]
+}

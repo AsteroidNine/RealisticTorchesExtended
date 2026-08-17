@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "GHG",
+    " G "
+  ],
+  "key": {
+    "H": {
+        "item": "minecraft:honeycomb"
+    },
+    "G": {
+      "item": "minecraft:glowstone_dust"
+    }
+  },
+  "result": {
+    "item": "realistictorchesextended:glowing_honeycomb"
+  }
+}

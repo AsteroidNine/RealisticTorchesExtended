@@ -80,6 +80,10 @@ minecraft {
                     source sourceSets.main
                 }
             }
+
+            tasks.named('processResources', ProcessResources).configure {
+                duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+            }
         }
 
         client {

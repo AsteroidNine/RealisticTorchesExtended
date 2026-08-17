@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SCS",
+    "LLL"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "C": [
+      {
+        "item": "minecraft:soul_sand"
+      },
+      {
+        "item": "minecraft:soul_soil"
+      }
+    ],
+    "L": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "result": {
+    "item": "realistictorchesextended:unlit_soul_campfire"
+  }
+}

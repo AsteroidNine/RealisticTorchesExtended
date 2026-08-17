@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "realistictorchesextended:lit_magenta_candle_match"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_unlit_magenta_candle": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "realistictorchesextended:unlit_magenta_candle"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_unlit_magenta_candle",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "realistictorchesextended:lit_magenta_candle_match"
+    ]
+  },
+  "sends_telemetry_event": false
+}

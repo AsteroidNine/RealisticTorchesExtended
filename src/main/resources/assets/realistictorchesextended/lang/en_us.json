@@ -3,6 +3,7 @@
   "item.realistictorchesextended.glowing_redstone_paste": "Glowing Redstone Paste",
   "item.realistictorchesextended.glowing_soul_crystal": "Glowing Soul Crystal",
   "item.realistictorchesextended.glowing_soul_paste": "Glowing Soul Paste",
+  "item.realistictorchesextended.glowing_honeycomb": "Glowing Honeycomb",
 
   "block.realistictorchesextended.realistic_redstone_torch": "Realistic Redstone Torch",
   "block.realistictorchesextended.realistic_redstone_torch_wall": "Realistic Redstone Torch",
@@ -14,6 +15,24 @@
 
   "block.realistictorchesextended.realistic_campfire": "Realistic Campfire",
   "block.realistictorchesextended.realistic_soul_campfire": "Realistic Soul Campfire",
+
+  "block.realistictorchesextended.realistic_candle": "Realistic Candle",
+  "block.realistictorchesextended.realistic_white_candle": "Realistic White Candle",
+  "block.realistictorchesextended.realistic_light_gray_candle": "Realistic Light Gray Candle",
+  "block.realistictorchesextended.realistic_gray_candle": "Realistic Gray Candle",
+  "block.realistictorchesextended.realistic_brown_candle": "Realistic Brown Candle",
+  "block.realistictorchesextended.realistic_black_candle": "Realistic Black Candle",
+  "block.realistictorchesextended.realistic_red_candle": "Realistic Red Candle",
+  "block.realistictorchesextended.realistic_orange_candle": "Realistic Orange Candle",
+  "block.realistictorchesextended.realistic_yellow_candle": "Realistic Yellow Candle",
+  "block.realistictorchesextended.realistic_lime_candle": "Realistic Lime Candle",
+  "block.realistictorchesextended.realistic_green_candle": "Realistic Green Candle",
+  "block.realistictorchesextended.realistic_cyan_candle": "Realistic Cyan Candle",
+  "block.realistictorchesextended.realistic_light_blue_candle": "Realistic Light Blue Candle",
+  "block.realistictorchesextended.realistic_blue_candle": "Realistic Blue Candle",
+  "block.realistictorchesextended.realistic_magenta_candle": "Realistic Magenta Candle",
+  "block.realistictorchesextended.realistic_purple_candle": "Realistic Purple Candle",
+  "block.realistictorchesextended.realistic_pink_candle": "Realistic Pink Candle",
 
   "creativetab.realistic_torches_extended_tab": "Realistic Torches Extended"
 }

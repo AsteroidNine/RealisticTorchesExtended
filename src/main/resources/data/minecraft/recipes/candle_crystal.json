@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S",
+    "C"
+  ],
+  "key": {
+    "S":
+    {
+      "item": "minecraft:string"
+    },
+    "C": {
+      "item": "realistictorchesextended:glowing_honeycomb"
+    }
+  },
+  "result": {
+    "item": "minecraft:candle"
+  }
+}

@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "pattern": [
     " S ",
     "SGS",
@@ -8,11 +9,11 @@
   "key": {
     "S":
     {
-      "item": "forge:rods/wooden"
+      "tag": "forge:rods/wooden"
     },
     "G":
     {
-      "tag": "realistictorches:glowstone_crystal"
+      "item": "realistictorches:glowstone_crystal"
     },
     "L":
     {
@@ -20,11 +21,6 @@
     }
   },
   "result": {
-    "item": "minecraft:redstone_torch"
-  },
-  "conditions": [
-    {
-      "type": "forge:false"
-    }
-  ]
+    "item": "minecraft:campfire"
+  }
 }

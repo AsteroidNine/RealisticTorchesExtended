@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " S ",
+    "SGS",
+    "LLL"
+  ],
+  "key": {
+    "S":
+    {
+      "tag": "forge:rods/wooden"
+    },
+    "G":
+    {
+      "item": "realistictorchesextended:glowing_soul_crystal"
+    },
+    "L":
+    {
+      "tag": "minecraft:logs"
+    }
+  },
+  "result": {
+    "item": "minecraft:soul_campfire"
+  }
+}

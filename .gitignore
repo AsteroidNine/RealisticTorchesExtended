@@ -17,7 +17,7 @@ out
 build
 .gradle
 src/test
-src/generated
+src/generated/resources/.cache
 
 # ForgeGradle
 /run
