@@ -1,6 +1,7 @@
 package com.asteroidnine.realistictorchesextended;
 
 import com.asteroidnine.realistictorchesextended.block.ModBlocks;
+import com.asteroidnine.realistictorchesextended.entity.ModBlockEntities;
 import com.asteroidnine.realistictorchesextended.item.ModCreativeModeTabs;
 import com.asteroidnine.realistictorchesextended.item.ModItems;
 import com.mojang.logging.LogUtils;
@@ -31,37 +32,17 @@ public class RealisticTorchesExtended
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
         ModCreativeModeTabs.register(modEventBus);
 
-        modEventBus.addListener(this::commonSetup);
-
         MinecraftForge.EVENT_BUS.register(this);
-        modEventBus.addListener(this::addCreative);
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event) {
-
-    }
-
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
-    }
-
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
-        // Do something when the server starts
-        LOGGER.info("HELLO from server starting");
-    }
-
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event) {
-            // Some client setup code
-            LOGGER.info("HELLO FROM CLIENT SETUP");
-            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+        public static void registerRenderers(net.minecraftforge.client.event.EntityRenderersEvent.RegisterRenderers event) {
+            event.registerBlockEntityRenderer(ModBlockEntities.REALISTIC_CAMPFIRE_ENTITY.get(), net.minecraft.client.renderer.blockentity.CampfireRenderer::new);
         }
     }
 }

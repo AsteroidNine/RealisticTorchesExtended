@@ -42,6 +42,11 @@ public class ModCreativeModeTabs {
 
                         pOutput.accept(ModItems.UNLIT_SOUL_LANTERN.get());
                         pOutput.accept(ModItems.LIT_SOUL_LANTERN.get());
+
+                        pOutput.accept(ModItems.UNLIT_CAMPFIRE.get());
+                        pOutput.accept(ModItems.LIT_CAMPFIRE.get());
+                        pOutput.accept(ModItems.UNLIT_SOUL_CAMPFIRE.get());
+                        pOutput.accept(ModItems.LIT_SOUL_CAMPFIRE.get());
                     })
                     .build()
     );

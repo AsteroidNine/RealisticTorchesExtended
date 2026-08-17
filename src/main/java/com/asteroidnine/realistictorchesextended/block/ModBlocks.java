@@ -5,6 +5,8 @@ import com.asteroidnine.realistictorchesextended.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -23,6 +25,11 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> REALISTIC_LANTERN = registerBlock("realistic_lantern", RealisticLanternBlock::new, false);
     public static final RegistryObject<Block> REALISTIC_SOUL_LANTERN = registerBlock("realistic_soul_lantern", RealisticLanternBlock::new, false);
+
+    public static final RegistryObject<Block> REALISTIC_CAMPFIRE = registerBlock("realistic_campfire", () -> new RealisticCampfireBlock(true, 1, Block.Properties.copy(Blocks.CAMPFIRE), 14, 12), false);
+    public static final RegistryObject<Block> REALISTIC_SOUL_CAMPFIRE = registerBlock("realistic_soul_campfire", () -> new RealisticCampfireBlock(true, 2, Block.Properties.copy(Blocks.SOUL_CAMPFIRE), 10, 8), false);
+
+    public static final RegistryObject<Block> REALISTIC_CANDLE = registerBlock("realistic_candle", () -> new RealisticCandleBlock(Block.Properties.copy(Blocks.CANDLE)), true);
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block, boolean needsItem) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

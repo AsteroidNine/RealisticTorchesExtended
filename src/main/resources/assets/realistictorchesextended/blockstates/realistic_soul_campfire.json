@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "facing=east,litstate=0": {
+      "model": "realistictorchesextended:block/soul_campfire_unlit",
+      "y": 270
+    },
+    "facing=east,litstate=1": {
+      "model": "realistictorchesextended:block/soul_campfire_smoldering",
+      "y": 270
+    },
+    "facing=east,litstate=2": {
+      "model": "realistictorchesextended:block/soul_campfire_lit",
+      "y": 270
+    },
+    "facing=north,litstate=0": {
+      "model": "realistictorchesextended:block/soul_campfire_unlit",
+      "y": 180
+    },
+    "facing=north,litstate=1": {
+      "model": "realistictorchesextended:block/soul_campfire_smoldering",
+      "y": 180
+    },
+    "facing=north,litstate=2": {
+      "model": "realistictorchesextended:block/soul_campfire_lit",
+      "y": 180
+    },
+    "facing=south,litstate=0": {
+      "model": "realistictorchesextended:block/soul_campfire_unlit"
+    },
+    "facing=south,litstate=1": {
+      "model": "realistictorchesextended:block/soul_campfire_smoldering"
+    },
+    "facing=south,litstate=2": {
+      "model": "realistictorchesextended:block/soul_campfire_lit"
+    },
+    "facing=west,litstate=0": {
+      "model": "realistictorchesextended:block/soul_campfire_unlit",
+      "y": 90
+    },
+    "facing=west,litstate=1": {
+      "model": "realistictorchesextended:block/soul_campfire_smoldering",
+      "y": 90
+    },
+    "facing=west,litstate=2": {
+      "model": "realistictorchesextended:block/soul_campfire_lit",
+      "y": 90
+    }
+  }
+}

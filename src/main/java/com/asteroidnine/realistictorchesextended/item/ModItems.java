@@ -39,6 +39,15 @@ public class ModItems {
     public static final RegistryObject<Item> UNLIT_SOUL_LANTERN = ITEMS.register("unlit_soul_lantern",
             () -> new UnlitSoulLanternItem(new Item.Properties()));
 
+    public static final RegistryObject<Item> LIT_CAMPFIRE = ITEMS.register("lit_campfire",
+            () -> new LitCampfireItem(ModBlocks.REALISTIC_CAMPFIRE, new Item.Properties()));
+    public static final RegistryObject<Item> UNLIT_CAMPFIRE = ITEMS.register("unlit_campfire",
+            () -> new UnlitCampfireItem(ModBlocks.REALISTIC_CAMPFIRE, new Item.Properties()));
+    public static final RegistryObject<Item> LIT_SOUL_CAMPFIRE = ITEMS.register("lit_soul_campfire",
+            () -> new LitCampfireItem(ModBlocks.REALISTIC_SOUL_CAMPFIRE, new Item.Properties()));
+    public static final RegistryObject<Item> UNLIT_SOUL_CAMPFIRE = ITEMS.register("unlit_soul_campfire",
+            () -> new UnlitCampfireItem(ModBlocks.REALISTIC_SOUL_CAMPFIRE, new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

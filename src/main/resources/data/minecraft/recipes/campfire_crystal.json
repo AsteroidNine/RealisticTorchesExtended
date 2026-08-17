@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SGS",
+    "LLL"
+  ],
+  "key": {
+    "S":
+    {
+      "item": "forge:rods/wooden"
+    },
+    "G":
+    {
+      "tag": "realistictorches:glowstone_crystal"
+    },
+    "L":
+    {
+      "tag": "minecraft:logs"
+    }
+  },
+  "result": {
+    "item": "minecraft:redstone_torch"
+  },
+  "conditions": [
+    {
+      "type": "forge:false"
+    }
+  ]
+}

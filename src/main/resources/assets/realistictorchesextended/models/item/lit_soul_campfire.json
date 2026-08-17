@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "realistictorchesextended:item/soul_campfire_lit"
+  }
+}
