@@ -1,5 +1,6 @@
 package com.asteroidnine.realistictorchesextended.block;
 
+import com.asteroidnine.realistictorchesextended.compat.kubejs.KubeJSHooks;
 import com.chaosthedude.realistictorches.config.ConfigHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -18,6 +19,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.fml.ModList;
 
 import javax.annotation.Nullable;
 
@@ -125,6 +127,10 @@ public class RealisticRedstoneWallTorchBlock extends RealisticRedstoneTorchBlock
                 level.scheduleTick(pos, this, 1200);
             }
             level.updateNeighborsAt(pos, this);
+        }
+
+        if (!level.isClientSide() && ModList.get().isLoaded("kubejs")) {
+            KubeJSHooks.fireBurnoutEvent(level, pos);
         }
     }
 

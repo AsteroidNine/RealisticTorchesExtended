@@ -1,5 +1,6 @@
 package com.asteroidnine.realistictorchesextended.block;
 
+import com.asteroidnine.realistictorchesextended.compat.kubejs.KubeJSHooks;
 import com.asteroidnine.realistictorchesextended.entity.ModBlockEntities;
 import com.asteroidnine.realistictorchesextended.entity.RealisticCampfireBlockEntity;
 import com.chaosthedude.realistictorches.config.ConfigHandler;
@@ -28,6 +29,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.ToIntFunction;
@@ -194,6 +196,10 @@ public class RealisticCampfireBlock extends CampfireBlock implements EntityBlock
                 .setValue(CampfireBlock.LIT, false);
 
         level.setBlock(pos, unlitState, 3); // Changed from 2 to 3
+
+        if (!level.isClientSide() && ModList.get().isLoaded("kubejs")) {
+            KubeJSHooks.fireBurnoutEvent(level, pos);
+        }
     }
 
     public void playLightingSound(Level level, BlockPos pos) {

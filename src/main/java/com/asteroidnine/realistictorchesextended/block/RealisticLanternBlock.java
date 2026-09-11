@@ -1,5 +1,6 @@
 package com.asteroidnine.realistictorchesextended.block;
 
+import com.asteroidnine.realistictorchesextended.compat.kubejs.KubeJSHooks;
 import com.chaosthedude.realistictorches.config.ConfigHandler;
 import com.chaosthedude.realistictorches.registry.RealisticTorchesRegistry;
 import net.minecraft.core.BlockPos;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
@@ -172,6 +174,9 @@ public class RealisticLanternBlock extends LanternBlock {
 
         level.setBlock(pos, unlitState, 2);
 
+        if (!level.isClientSide() && ModList.get().isLoaded("kubejs")) {
+            KubeJSHooks.fireBurnoutEvent(level, pos);
+        }
     }
 
     public void playLightingSound(Level level, BlockPos pos) {
