@@ -1,19 +1,16 @@
 package com.asteroidnine.realistictorchesextended.entity;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.CampfireBlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.tileentity.CampfireTileEntity;
+import net.minecraft.tileentity.TileEntityType;
 
-public class RealisticCampfireBlockEntity extends CampfireBlockEntity {
-    public RealisticCampfireBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(pPos, pBlockState);
+public class RealisticCampfireBlockEntity extends CampfireTileEntity {
+
+    public RealisticCampfireBlockEntity() {
+        super();
     }
 
     @Override
-    public BlockEntityType<?> getType() {
+    public TileEntityType<?> getType() {
         return ModBlockEntities.REALISTIC_CAMPFIRE_ENTITY.get();
     }
 }
-
-

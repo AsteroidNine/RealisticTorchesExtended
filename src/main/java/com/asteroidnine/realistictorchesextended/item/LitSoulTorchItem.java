@@ -1,22 +1,20 @@
 package com.asteroidnine.realistictorchesextended.item;
 
 import com.asteroidnine.realistictorchesextended.block.ModBlocks;
-import com.asteroidnine.realistictorchesextended.block.RealisticRedstoneTorchBlock;
-
 import com.asteroidnine.realistictorchesextended.block.RealisticSoulTorchBlock;
-import net.minecraft.core.Direction;
-import net.minecraft.world.item.StandingAndWallBlockItem;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.block.state.BlockState;
 
-public class LitSoulTorchItem extends StandingAndWallBlockItem {
+import net.minecraft.block.BlockState;
+import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.WallOrFloorItem;
 
-    public LitSoulTorchItem(Properties properties, Direction direction) {
-        super(ModBlocks.REALISTIC_SOUL_TORCH.get(), ModBlocks.REALISTIC_SOUL_TORCH_WALL.get(), properties, direction);
+public class LitSoulTorchItem extends WallOrFloorItem {
+
+    public LitSoulTorchItem(Properties properties) {
+        super(ModBlocks.REALISTIC_SOUL_TORCH.get(), ModBlocks.REALISTIC_SOUL_TORCH_WALL.get(), properties);
     }
 
     @Override
-    public BlockState getPlacementState(BlockPlaceContext context) {
+    public BlockState getPlacementState(BlockItemUseContext context) {
         BlockState state = super.getPlacementState(context);
         if (state != null) {
             return state.setValue(RealisticSoulTorchBlock.getLitState(), RealisticSoulTorchBlock.LIT)
@@ -24,5 +22,4 @@ public class LitSoulTorchItem extends StandingAndWallBlockItem {
         }
         return null;
     }
-
 }

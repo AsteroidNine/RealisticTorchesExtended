@@ -1,32 +1,28 @@
 package com.asteroidnine.realistictorchesextended.block;
 
-import com.asteroidnine.realistictorchesextended.compat.kubejs.KubeJSHooks;
 import com.chaosthedude.realistictorches.config.ConfigHandler;
-import com.chaosthedude.realistictorches.registry.RealisticTorchesRegistry;
-import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LanternBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.registries.ForgeRegistries;
+import com.chaosthedude.realistictorches.items.RealisticTorchesItems;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.LanternBlock;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.state.IntegerProperty;
+import net.minecraft.state.Property;
+import net.minecraft.state.StateContainer;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
-import java.util.List;
+import java.util.Random;
 import java.util.function.ToIntFunction;
 
 public class RealisticLanternBlock extends LanternBlock {
@@ -45,15 +41,15 @@ public class RealisticLanternBlock extends LanternBlock {
         this.registerDefaultState((BlockState)((BlockState)((BlockState)this.stateDefinition.any()).setValue(LITSTATE, 0)).setValue(BURNTIME, 0));
     }
 
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+    public void animateTick(BlockState state, World level, BlockPos pos, Random random) {
         if ((Integer)state.getValue(LITSTATE) == 2 || (Integer)state.getValue(LITSTATE) == 1 && level.getRandom().nextInt(2) == 1) {
             super.animateTick(state, level, pos, random);
         }
     }
 
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public ActionResultType use(BlockState state, World level, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
         if (level.isClientSide()) {
-            return InteractionResult.SUCCESS;
+            return ActionResultType.SUCCESS;
         } else {
             ItemStack stack = player.getItemInHand(hand);
 
@@ -61,11 +57,11 @@ public class RealisticLanternBlock extends LanternBlock {
                 return super.use(state, level, pos, player, hand, hit);
             }
 
-            if (stack.getItem() != Items.FLINT_AND_STEEL && stack.getItem() != RealisticTorchesRegistry.MATCHBOX_ITEM.get() && !((List) ConfigHandler.lightTorchItems.get()).contains(ForgeRegistries.ITEMS.getKey(stack.getItem()).toString())) {
+            if (stack.getItem() != Items.FLINT_AND_STEEL && stack.getItem() != RealisticTorchesItems.MATCHBOX) {
                 return super.use(state, level, pos, player, hand, hit);
             } else {
                 this.playLightingSound(level, pos);
-                if (!player.isCreative() && (stack.getItem() != RealisticTorchesRegistry.MATCHBOX_ITEM.get() || (Integer)ConfigHandler.matchboxDurability.get() > 0)) {
+                if (!player.isCreative() && (stack.getItem() != RealisticTorchesItems.MATCHBOX || (Integer)ConfigHandler.matchboxDurability.get() > 0)) {
                     stack.hurtAndBreak(1, player, (playerEntity) -> playerEntity.broadcastBreakEvent(hand));
                 }
 
@@ -76,12 +72,12 @@ public class RealisticLanternBlock extends LanternBlock {
                     this.changeToLit(level, pos, exactState);
                 }
 
-                return InteractionResult.SUCCESS;
+                return ActionResultType.SUCCESS;
             }
         }
     }
 
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void tick(BlockState state, ServerWorld level, BlockPos pos, Random random) {
         if (!level.isClientSide() && SHOULD_BURN_OUT && (Integer)state.getValue(LITSTATE) > 0) {
             if (level.isRainingAt(pos)) {
                 this.playExtinguishSound(level, pos);
@@ -96,29 +92,27 @@ public class RealisticLanternBlock extends LanternBlock {
                 level.updateNeighborsAt(pos, this);
             } else if ((Integer)state.getValue(LITSTATE) != 2 || newBurnTime > INITIAL_BURN_TIME / 10 && newBurnTime > 1) {
                 level.setBlock(pos, (BlockState)state.setValue(BURNTIME, newBurnTime), 2);
-                level.scheduleTick(pos, this, 1200);
+                level.getBlockTicks().scheduleTick(pos, this, 1200);
             } else {
                 this.changeToSmoldering(level, pos, state, newBurnTime);
                 level.updateNeighborsAt(pos, this);
             }
         }
-
     }
 
-    public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity entity, ItemStack stack) {
+    public void setPlacedBy(World level, BlockPos pos, BlockState state, LivingEntity entity, ItemStack stack) {
         super.setPlacedBy(level, pos, state, entity, stack);
-        level.scheduleTick(pos, this, 1200);
+        level.getBlockTicks().scheduleTick(pos, this, 1200);
     }
 
-    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onPlace(BlockState state, World level, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!isMoving && state.getBlock() != newState.getBlock()) {
             this.defaultBlockState().updateNeighbourShapes(level, pos, 3);
         }
-
         super.onPlace(state, level, pos, newState, isMoving);
     }
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(new Property[]{BURNTIME});
         builder.add(new Property[]{LITSTATE});
@@ -136,7 +130,7 @@ public class RealisticLanternBlock extends LanternBlock {
         return SHOULD_BURN_OUT ? INITIAL_BURN_TIME : 0;
     }
 
-    public void changeToLit(Level level, BlockPos pos, BlockState state) {
+    public void changeToLit(World level, BlockPos pos, BlockState state) {
         BlockState litState = ModBlocks.REALISTIC_LANTERN.get().defaultBlockState()
                 .setValue(HANGING, state.getValue(HANGING))
                 .setValue(WATERLOGGED, state.getValue(WATERLOGGED))
@@ -146,12 +140,11 @@ public class RealisticLanternBlock extends LanternBlock {
         level.setBlock(pos, litState, 2);
 
         if (SHOULD_BURN_OUT) {
-            level.scheduleTick(pos, this, TICK_INTERVAL);
+            level.getBlockTicks().scheduleTick(pos, this, TICK_INTERVAL);
         }
     }
 
-    public void changeToSmoldering(Level level, BlockPos pos, BlockState state, int newBurnTime) {
-        // Retain HANGING and WATERLOGGED from the state passed into the method
+    public void changeToSmoldering(World level, BlockPos pos, BlockState state, int newBurnTime) {
         BlockState smolderingState = ModBlocks.REALISTIC_LANTERN.get().defaultBlockState()
                 .setValue(HANGING, state.getValue(HANGING))
                 .setValue(WATERLOGGED, state.getValue(WATERLOGGED))
@@ -161,11 +154,11 @@ public class RealisticLanternBlock extends LanternBlock {
         level.setBlock(pos, smolderingState, 2);
 
         if (SHOULD_BURN_OUT) {
-            level.scheduleTick(pos, this, TICK_INTERVAL);
+            level.getBlockTicks().scheduleTick(pos, this, TICK_INTERVAL);
         }
     }
 
-    public void changeToUnlit(Level level, BlockPos pos, BlockState state) {
+    public void changeToUnlit(World level, BlockPos pos, BlockState state) {
         BlockState unlitState = ModBlocks.REALISTIC_LANTERN.get().defaultBlockState()
                 .setValue(HANGING, state.getValue(HANGING))
                 .setValue(WATERLOGGED, state.getValue(WATERLOGGED))
@@ -173,18 +166,14 @@ public class RealisticLanternBlock extends LanternBlock {
                 .setValue(RealisticLanternBlock.getBurnTime(), 0);
 
         level.setBlock(pos, unlitState, 2);
-
-        if (!level.isClientSide() && ModList.get().isLoaded("kubejs")) {
-            KubeJSHooks.fireBurnoutEvent(level, pos);
-        }
     }
 
-    public void playLightingSound(Level level, BlockPos pos) {
-        level.playSound((Player)null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.1F + 0.9F);
+    public void playLightingSound(World level, BlockPos pos) {
+        level.playSound((PlayerEntity)null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.1F + 0.9F);
     }
 
-    public void playExtinguishSound(Level level, BlockPos pos) {
-        level.playSound((Player)null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.1F + 0.9F);
+    public void playExtinguishSound(World level, BlockPos pos) {
+        level.playSound((PlayerEntity)null, pos, SoundEvents.FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.1F + 0.9F);
     }
 
     private static ToIntFunction<BlockState> getLightValueFromState() {

@@ -3,19 +3,18 @@ package com.asteroidnine.realistictorchesextended.item;
 import com.asteroidnine.realistictorchesextended.block.ModBlocks;
 import com.asteroidnine.realistictorchesextended.block.RealisticRedstoneTorchBlock;
 
-import net.minecraft.core.Direction;
-import net.minecraft.world.item.StandingAndWallBlockItem;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.block.BlockState;
+import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.WallOrFloorItem;
 
-public class LitRedstoneTorchItem extends StandingAndWallBlockItem {
+public class LitRedstoneTorchItem extends WallOrFloorItem {
 
-    public LitRedstoneTorchItem(Properties properties, Direction direction) {
-        super(ModBlocks.REALISTIC_REDSTONE_TORCH.get(), ModBlocks.REALISTIC_REDSTONE_TORCH_WALL.get(), properties, direction);
+    public LitRedstoneTorchItem(Properties properties) {
+        super(ModBlocks.REALISTIC_REDSTONE_TORCH.get(), ModBlocks.REALISTIC_REDSTONE_TORCH_WALL.get(), properties);
     }
 
     @Override
-    public BlockState getPlacementState(BlockPlaceContext context) {
+    public BlockState getPlacementState(BlockItemUseContext context) {
         BlockState state = super.getPlacementState(context);
         if (state != null) {
             return state.setValue(RealisticRedstoneTorchBlock.getLitState(), RealisticRedstoneTorchBlock.LIT)
@@ -23,5 +22,4 @@ public class LitRedstoneTorchItem extends StandingAndWallBlockItem {
         }
         return null;
     }
-
 }

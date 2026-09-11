@@ -2,13 +2,15 @@ package com.asteroidnine.realistictorchesextended.item;
 
 import com.asteroidnine.realistictorchesextended.block.RealisticCampfireBlock;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.CampfireBlock;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.RegistryObject;
 
 public class UnlitCampfireItem extends BlockItem {
 
@@ -17,19 +19,18 @@ public class UnlitCampfireItem extends BlockItem {
     }
 
     @Override
-    public BlockState getPlacementState(BlockPlaceContext context) {
-        Level level = context.getLevel();
+    public BlockState getPlacementState(BlockItemUseContext context) {
+        World level = context.getLevel();
         BlockPos pos = context.getClickedPos();
 
-        net.minecraft.world.level.material.FluidState fluidState = level.getFluidState(pos);
-        boolean isWater = fluidState.getType() == net.minecraft.world.level.material.Fluids.WATER;
+        boolean isWater = level.getFluidState(pos).getType() == Fluids.WATER;
 
         BlockState state = super.getPlacementState(context);
 
         if (state != null) {
             return state
-                    .setValue(net.minecraft.world.level.block.CampfireBlock.WATERLOGGED, isWater)
-                    .setValue(net.minecraft.world.level.block.CampfireBlock.LIT, false)
+                    .setValue(CampfireBlock.WATERLOGGED, isWater)
+                    .setValue(CampfireBlock.LIT, false)
                     .setValue(RealisticCampfireBlock.getLitState(), RealisticCampfireBlock.UNLIT)
                     .setValue(RealisticCampfireBlock.getBurnTime(), 0);
         }

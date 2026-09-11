@@ -1,16 +1,15 @@
 package com.asteroidnine.realistictorchesextended.block;
 
-import com.asteroidnine.realistictorchesextended.compat.kubejs.KubeJSHooks;
 import com.chaosthedude.realistictorches.blocks.RealisticTorchBlock;
 import com.chaosthedude.realistictorches.config.ConfigHandler;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.fml.ModList;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class RealisticSoulTorchBlock extends RealisticTorchBlock {
 
@@ -19,7 +18,7 @@ public class RealisticSoulTorchBlock extends RealisticTorchBlock {
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+    public void animateTick(BlockState state, World level, BlockPos pos, Random random) {
         int litState = state.getValue(LITSTATE);
 
         if (litState == 2 || (litState == 1 && random.nextInt(2) == 1)) {
@@ -33,45 +32,39 @@ public class RealisticSoulTorchBlock extends RealisticTorchBlock {
     }
 
     @Override
-    public void changeToLit(Level level, BlockPos pos, BlockState state) {
+    public void changeToLit(World level, BlockPos pos, BlockState state) {
         level.setBlock(pos, (BlockState)((BlockState)((Block)ModBlocks.REALISTIC_SOUL_TORCH.get()).defaultBlockState()
                 .setValue(LITSTATE, 2))
                 .setValue(BURNTIME, getInitialBurnTime()), 3);
 
         level.updateNeighborsAt(pos, this);
         if (SHOULD_BURN_OUT) {
-            level.scheduleTick(pos, this, 1200);
+            level.getBlockTicks().scheduleTick(pos, this, 1200);
         }
-
     }
 
     @Override
-    public void changeToSmoldering(Level level, BlockPos pos, BlockState state, int newBurnTime) {
+    public void changeToSmoldering(World level, BlockPos pos, BlockState state, int newBurnTime) {
         if (SHOULD_BURN_OUT) {
             level.setBlock(pos, (BlockState)((BlockState)((Block)ModBlocks.REALISTIC_SOUL_TORCH.get()).defaultBlockState()
                     .setValue(LITSTATE, 1))
                     .setValue(BURNTIME, newBurnTime), 3);
 
             level.updateNeighborsAt(pos, this);
-            level.scheduleTick(pos, this, 1200);
+            level.getBlockTicks().scheduleTick(pos, this, 1200);
         }
-
     }
 
     @Override
-    public void changeToUnlit(Level level, BlockPos pos, BlockState state) {
+    public void changeToUnlit(World level, BlockPos pos, BlockState state) {
         if (SHOULD_BURN_OUT) {
             if ((Boolean) ConfigHandler.noRelightEnabled.get()) {
                 level.setBlock(pos, Blocks.AIR.defaultBlockState(), 2);
             } else {
                 level.setBlock(pos, ((Block)ModBlocks.REALISTIC_SOUL_TORCH.get()).defaultBlockState(), 3);
-                level.scheduleTick(pos, this, 1200);
+                level.getBlockTicks().scheduleTick(pos, this, 1200);
             }
             level.updateNeighborsAt(pos, this);
-        }
-
-        if (!level.isClientSide() && ModList.get().isLoaded("kubejs")) {
-            KubeJSHooks.fireBurnoutEvent(level, pos);
         }
     }
 }
