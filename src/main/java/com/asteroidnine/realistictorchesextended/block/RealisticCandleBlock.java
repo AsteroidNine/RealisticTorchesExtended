@@ -1,6 +1,5 @@
 package com.asteroidnine.realistictorchesextended.block;
 
-import com.asteroidnine.realistictorchesextended.compat.kubejs.KubeJSHooks;
 import com.chaosthedude.realistictorches.config.ConfigHandler;
 import com.chaosthedude.realistictorches.registry.RealisticTorchesRegistry;
 import net.minecraft.core.BlockPos;
@@ -135,10 +134,6 @@ public class RealisticCandleBlock extends CandleBlock {
                 .setValue(LITSTATE, UNLIT)
                 .setValue(CandleBlock.LIT, false);
         level.setBlock(pos, unlitState, 3);
-
-        if (!level.isClientSide() && ModList.get().isLoaded("kubejs")) {
-            KubeJSHooks.fireBurnoutEvent(level, pos);
-        }
     }
 
     @Override

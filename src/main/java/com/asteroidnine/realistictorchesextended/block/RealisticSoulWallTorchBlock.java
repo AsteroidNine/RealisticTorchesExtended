@@ -1,6 +1,5 @@
 package com.asteroidnine.realistictorchesextended.block;
 
-import com.asteroidnine.realistictorchesextended.compat.kubejs.KubeJSHooks;
 import com.chaosthedude.realistictorches.blocks.RealisticWallTorchBlock;
 import com.chaosthedude.realistictorches.config.ConfigHandler;
 import net.minecraft.core.BlockPos;
@@ -11,7 +10,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.fml.ModList;
 
 public class RealisticSoulWallTorchBlock extends RealisticWallTorchBlock {
 
@@ -71,10 +69,6 @@ public class RealisticSoulWallTorchBlock extends RealisticWallTorchBlock {
                 level.scheduleTick(pos, this, 1200);
             }
             level.updateNeighborsAt(pos, this);
-        }
-
-        if (!level.isClientSide() && ModList.get().isLoaded("kubejs")) {
-            KubeJSHooks.fireBurnoutEvent(level, pos);
         }
     }
 }
