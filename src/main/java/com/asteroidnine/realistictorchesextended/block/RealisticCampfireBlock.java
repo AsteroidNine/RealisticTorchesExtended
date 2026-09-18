@@ -9,7 +9,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,7 +17,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -32,6 +30,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Random;
 import java.util.function.ToIntFunction;
 
 public class RealisticCampfireBlock extends CampfireBlock implements EntityBlock {
@@ -56,9 +55,8 @@ public class RealisticCampfireBlock extends CampfireBlock implements EntityBlock
         return new RealisticCampfireBlockEntity(pPos, pState);
     }
 
-    @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
-        if (state.getValue(LITSTATE) == LIT || (state.getValue(LITSTATE) == SMOLDERING && level.getRandom().nextInt(2) == 1)) {
+    public void animateTick(BlockState state, Level level, BlockPos pos, Random random) {
+        if (state.getValue(LITSTATE) == LIT || (state.getValue(LITSTATE) == SMOLDERING && level.random.nextInt(2) == 1)) {
             super.animateTick(state, level, pos, random);
         }
     }
@@ -67,7 +65,6 @@ public class RealisticCampfireBlock extends CampfireBlock implements EntityBlock
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack stack = player.getItemInHand(hand);
 
-        // Handle lighting the campfire
         if (stack.getItem() == Items.FLINT_AND_STEEL || stack.getItem() == RealisticTorchesRegistry.MATCHBOX_ITEM.get() || ConfigHandler.lightTorchItems.get().contains(ForgeRegistries.ITEMS.getKey(stack.getItem()).toString())) {
             if (state.getValue(LITSTATE) == UNLIT) {
                 playLightingSound(level, pos);
@@ -87,11 +84,10 @@ public class RealisticCampfireBlock extends CampfireBlock implements EntityBlock
             }
         }
 
-        // Intercept vanilla shovel extinguishing
         if (stack.getItem() instanceof net.minecraft.world.item.ShovelItem && state.getValue(LITSTATE) > UNLIT) {
             if (!level.isClientSide()) {
                 playExtinguishSound(level, pos);
-                CampfireBlock.dowse(player, level, pos, state); // Drop cooking items before extinguishing
+                CampfireBlock.dowse(player, level, pos, state);
                 changeToUnlit(level, pos, state);
                 if (!player.isCreative()) {
                     stack.hurtAndBreak(1, player, playerEntity -> {
@@ -106,7 +102,7 @@ public class RealisticCampfireBlock extends CampfireBlock implements EntityBlock
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
         if (!level.isClientSide() && SHOULD_BURN_OUT && state.getValue(LITSTATE) > UNLIT) {
             if (level.isRainingAt(pos)) {
                 playExtinguishSound(level, pos);
@@ -169,7 +165,7 @@ public class RealisticCampfireBlock extends CampfireBlock implements EntityBlock
                 .setValue(RealisticCampfireBlock.getBurnTime(), getInitialBurnTime())
                 .setValue(CampfireBlock.LIT, true);
 
-        level.setBlock(pos, litState, 3); // Changed from 2 to 3
+        level.setBlock(pos, litState, 3);
 
         if (SHOULD_BURN_OUT) {
             level.scheduleTick(pos, this, TICK_INTERVAL);
@@ -182,7 +178,7 @@ public class RealisticCampfireBlock extends CampfireBlock implements EntityBlock
                 .setValue(RealisticCampfireBlock.getBurnTime(), newBurnTime)
                 .setValue(CampfireBlock.LIT, true);
 
-        level.setBlock(pos, smolderingState, 3); // Changed from 2 to 3
+        level.setBlock(pos, smolderingState, 3);
 
         if (SHOULD_BURN_OUT) {
             level.scheduleTick(pos, this, TICK_INTERVAL);
@@ -195,7 +191,7 @@ public class RealisticCampfireBlock extends CampfireBlock implements EntityBlock
                 .setValue(RealisticCampfireBlock.getBurnTime(), 0)
                 .setValue(CampfireBlock.LIT, false);
 
-        level.setBlock(pos, unlitState, 3); // Changed from 2 to 3
+        level.setBlock(pos, unlitState, 3);
 
         if (!level.isClientSide() && ModList.get().isLoaded("kubejs")) {
             KubeJSHooks.fireBurnoutEvent(level, pos);
@@ -203,11 +199,11 @@ public class RealisticCampfireBlock extends CampfireBlock implements EntityBlock
     }
 
     public void playLightingSound(Level level, BlockPos pos) {
-        level.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.1F + 0.9F);
+        level.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, level.random.nextFloat() * 0.1F + 0.9F);
     }
 
     public void playExtinguishSound(Level level, BlockPos pos) {
-        level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.1F + 0.9F);
+        level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, level.random.nextFloat() * 0.1F + 0.9F);
     }
 
     private static ToIntFunction<BlockState> getLightValueFromState(int litLight, int smolderingLight) {

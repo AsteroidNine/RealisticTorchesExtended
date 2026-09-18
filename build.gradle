@@ -13,7 +13,6 @@ base {
     archivesName = mod_id
 }
 
-// Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
@@ -152,10 +151,8 @@ dependencies {
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
-    implementation fg.deobf("curse.maven:realistic-torches-235729:4647752")
-    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:15.3.0.4")
-    compileOnly fg.deobf("curse.maven:kubejs-238086:8020595")
-    compileOnly fg.deobf("curse.maven:rhino-416294:6186971")
+    implementation fg.deobf("curse.maven:realistic-torches-235729:4101939")
+    //runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:15.3.0.4")
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
