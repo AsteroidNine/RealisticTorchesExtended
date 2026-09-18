@@ -131,9 +131,7 @@ public class RealisticLanternBlock extends LanternBlock {
     }
 
     public void changeToLit(World level, BlockPos pos, BlockState state) {
-        BlockState litState = ModBlocks.REALISTIC_LANTERN.get().defaultBlockState()
-                .setValue(HANGING, state.getValue(HANGING))
-                .setValue(WATERLOGGED, state.getValue(WATERLOGGED))
+        BlockState litState = state
                 .setValue(RealisticLanternBlock.getLitState(), RealisticLanternBlock.LIT)
                 .setValue(RealisticLanternBlock.getBurnTime(), getInitialBurnTime());
 
@@ -145,9 +143,7 @@ public class RealisticLanternBlock extends LanternBlock {
     }
 
     public void changeToSmoldering(World level, BlockPos pos, BlockState state, int newBurnTime) {
-        BlockState smolderingState = ModBlocks.REALISTIC_LANTERN.get().defaultBlockState()
-                .setValue(HANGING, state.getValue(HANGING))
-                .setValue(WATERLOGGED, state.getValue(WATERLOGGED))
+        BlockState smolderingState = state
                 .setValue(RealisticLanternBlock.getLitState(), RealisticLanternBlock.SMOLDERING)
                 .setValue(RealisticLanternBlock.getBurnTime(), newBurnTime);
 
@@ -159,9 +155,7 @@ public class RealisticLanternBlock extends LanternBlock {
     }
 
     public void changeToUnlit(World level, BlockPos pos, BlockState state) {
-        BlockState unlitState = ModBlocks.REALISTIC_LANTERN.get().defaultBlockState()
-                .setValue(HANGING, state.getValue(HANGING))
-                .setValue(WATERLOGGED, state.getValue(WATERLOGGED))
+        BlockState unlitState = state
                 .setValue(RealisticLanternBlock.getLitState(), RealisticLanternBlock.UNLIT)
                 .setValue(RealisticLanternBlock.getBurnTime(), 0);
 

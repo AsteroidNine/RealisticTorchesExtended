@@ -1,6 +1,9 @@
 package com.asteroidnine.realistictorchesextended;
 
+import com.asteroidnine.realistictorchesextended.entity.ModBlockEntities;
 import com.asteroidnine.realistictorchesextended.item.ModItems;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,8 +24,9 @@ public class RealisticTorchesExtended {
     public RealisticTorchesExtended() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModItems.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
 
         modEventBus.addListener(this::setup);
         modEventBus.addListener(this::doClientStuff);
@@ -36,7 +40,12 @@ public class RealisticTorchesExtended {
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-
+            RenderTypeLookup.setRenderLayer(ModBlocks.REALISTIC_REDSTONE_TORCH.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(ModBlocks.REALISTIC_REDSTONE_TORCH_WALL.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(ModBlocks.REALISTIC_SOUL_TORCH.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(ModBlocks.REALISTIC_SOUL_TORCH_WALL.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(ModBlocks.REALISTIC_CAMPFIRE.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(ModBlocks.REALISTIC_SOUL_CAMPFIRE.get(), RenderType.cutout());
         });
     }
 }

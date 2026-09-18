@@ -28,10 +28,10 @@ public class ModItems {
     public static final RegistryObject<Item> REDSTONE_TORCH = ITEMS.register("unlit_redstone_torch",
             () -> new UnlitRedstoneTorchItem(defaultProperties()));
     public static final RegistryObject<Item> SOUL_TORCH = ITEMS.register("unlit_soul_torch",
-            () -> new LitSoulTorchItem(defaultProperties()));
+            () -> new UnlitSoulTorchItem(defaultProperties()));
 
     public static final RegistryObject<Item> LANTERN = ITEMS.register("unlit_lantern",
-            () -> new LitLanternItem(ModBlocks.REALISTIC_LANTERN, defaultProperties()));
+            () -> new UnlitLanternItem(ModBlocks.REALISTIC_LANTERN, defaultProperties()));
     public static final RegistryObject<Item> SOUL_LANTERN = ITEMS.register("unlit_soul_lantern",
             () -> new UnlitSoulLanternItem(defaultProperties()));
 
